@@ -1,5 +1,7 @@
 const cloudinary = require("../middleware/cloudinary");
 const Post = require("../models/Post");
+// Access all the comments in the Comment model
+const Comment = require("../models/Comment")
 
 module.exports = {
   getProfile: async (req, res) => {
@@ -21,7 +23,10 @@ module.exports = {
   getPost: async (req, res) => {
     try {
       const post = await Post.findById(req.params.id);
-      res.render("post.ejs", { post: post, user: req.user });
+      // Add a new comments variable that will find the post property of the post we're currently on
+      const comments = await Comment.find({ post: req.params.id, }).sort({ createdAt: "desc" }).lean();
+      // gives your View access to the comments variable above
+      res.render("post.ejs", { post: post, user: req.user, comments: comments });
     } catch (err) {
       console.log(err);
     }
