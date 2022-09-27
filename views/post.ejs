@@ -30,11 +30,13 @@
     <!-- COMMENTS -->
     <div class="mt-5">
       <h2>Add a comment</h2>
-      <form action="/post/createPost" method="POST">
+      <!-- create a new route for the comment while tracking the post that the comment belongs to, which became accessible in th posts.js, under the getPost res.render -->
+      <form action="/comment/createComment/<%= post._id%>" method="POST">
         <div class="mb-3">
-          <label for="comment" class="form-label">Comment </label>
+          <label for="comment" class="form-label">Comment</label>
           <input type="text" class="form-control" id="comment" name="comment">
         </div>
+        <button type="submit" class="btn btn-primary">Submit</button>
         <div class="mb-3">
           <label for="caption" class="form-label">Caption</label>
           <textarea class="form-control" id="caption" name="caption"></textarea>

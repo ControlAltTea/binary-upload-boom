@@ -24,7 +24,7 @@ module.exports = {
     try {
       const post = await Post.findById(req.params.id);
       // Add a new comments variable that will find the post property of the post we're currently on
-      const comments = await Comment.find({ post: req.params.id, }).sort({ createdAt: "desc" }).lean();
+      const comments = await Comment.find({ post: req.params.id}).sort({ createdAt: "desc" }).lean();
       // gives your View access to the comments variable above
       res.render("post.ejs", { post: post, user: req.user, comments: comments });
     } catch (err) {
