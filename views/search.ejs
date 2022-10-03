@@ -1,0 +1,30 @@
+<h2>Search Friends</h2>
+<form action=”/search” method=”post”>
+    <input type=”text” name=”searchfriend” placeholder=”username”>
+    <input type=”submit” name=”search”>
+</form>
+<hr>
+<% for(let i = 0; i<result.length; i++) { %>
+<div class="usercard col-lg-3">
+    <p class="usercard-username">@(<%= this.userName %>)</p>
+    <button class="usercard-button accept">
+        Accept
+    </button>
+    <button class="usercard-button reject">
+        Reject
+    </button>
+    <% } %>
+</div>
+<hr>
+<form action="" method=”get” class=”add_friend”>
+    <input type="hidden" name="receiverName" class="receiverName" value="<%= this.userName %>">
+    <input type="hidden" name="sender-name" class="sender-name" value="<%= this.userName %>">
+    <button type="submit" id=”” onclick="addFriend(`<%= this.userName %>
+`)" class="btn add accept friend-add"><i class=”fa
+            fa-user”></i> Add Friend</button>
+</form>
+<div class="col-6">
+    <div class="row justify-content-center mt-5">
+        <a class="btn btn-primary" href="/feed">Return to Feed</a>
+    </div>
+</div>
